@@ -5,8 +5,11 @@ Rails.application.routes.draw do
   resources :teams
   resources :coaches
   resources :athletes
-  #route to test config
-  get '/hello', to: 'application#hello_world'
+
+  get '/me', to: 'athletes#show'
+  post '/signup', to: 'athletes#create'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
 
   get '*path',
     to: 'fallback#index',
