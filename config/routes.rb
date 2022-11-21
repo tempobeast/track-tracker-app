@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :users
   resources :workout_groups
   resources :log_entries
   resources :workouts

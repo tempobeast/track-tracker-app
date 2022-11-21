@@ -1,4 +1,4 @@
-class Athlete < ApplicationRecord
+class Athlete < User
 
     has_one :team
     has_many :log_entries

@@ -1,6 +1,6 @@
-class Coach < ApplicationRecord
+class Coach < User
 
-    has_one :team
+    belongs_to :team
     has_many :workouts
     has_many :workout_groups
     has_many :athletes, through: :workout_groups
