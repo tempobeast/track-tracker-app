@@ -1,18 +1,16 @@
-import logo from './logo.svg';
 import {useState, useEffect} from 'react'
 import './App.css';
+import LoginPage from './components/LoginPage';
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  useEffect(() => {
-    fetch('/hello')
-    .then((res) => res.json())
-    .then((data) => setCount(data.count))
-  }, [])
+  const [user, setUser] = useState('')
 
   return ( 
-    <h1>Page Count: {count}</h1>
+    <div>
+      <h1>Track Tracker</h1>
+      {user ? <h2>Welcome {user.first_name}</h2> : <LoginPage setUser={setUser}/>}
+    </div>
   );
 }
 
