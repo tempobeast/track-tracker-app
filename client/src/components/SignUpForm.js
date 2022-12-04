@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 
-function SignUpForm({setUser}) {
-
-  const [isLoading, setIsLoading] = useState(false);
-  const [errors, setErrors] = useState([]);
+function SignUpForm({onSignUpSubmit, teams, isLoading}) {
 
   const [formData, setFormData] = useState({})
 
@@ -16,37 +13,10 @@ function SignUpForm({setUser}) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (formData.password !== formData.passwordConfirmation) {
-      alert("Passwords do not match");
-    } else {
-      setErrors([]);
-      setIsLoading(true);
-      fetch("/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: formData.username,
-          password: formData.password,
-          password_confirmation: formData.passwordConfirmation,
-          first_name: formData.firstName,
-          last_name: formData.lastName,
-          email: formData.email,
-          type: formData.type,
-        }),
-      }).then((res) => {
-        setIsLoading(false);
-        if (res.ok) {
-          res.json().then((user) => {
-            setUser(user);
-          });
-        } else {
-          res.json().then((err) => setErrors(err.errors));
-        }
-      });
-    }
+    onSignUpSubmit(formData)
   }
+
+  const selectTeam = teams.map((team) => <option key={team.id} value={team.id}>{team.name}</option>)
 
   return (
     <div>
@@ -75,29 +45,29 @@ function SignUpForm({setUser}) {
         <label htmlFor="password">Password Confirmation: </label>
         <input
           type="password"
-          id="password-confirmation"
+          id="password_confirmation"
           autoComplete="current-password"
-          value={formData.passwordConfirmation}
+          value={formData.password_confirmation}
           onChange={handleChange}
           required
         />
         <br />
-        <label htmlFor="first-name">First Name: </label>
+        <label htmlFor="first_name">First Name: </label>
         <input
-          type="first-name"
-          id="first-name"
+          type="first_name"
+          id="first_name"
           autoComplete="off"
-          value={formData.firstName}
+          value={formData.first_name}
           onChange={handleChange}
           required
         />
         <br />
-        <label htmlFor="last-name">Last Name: </label>
+        <label htmlFor="last_name">Last Name: </label>
         <input
-          type="last-name"
-          id="last-name"
+          type="last_name"
+          id="last_name"
           autoComplete="off"
-          value={formData.lastName}
+          value={formData.last_name}
           onChange={handleChange}
           required
         />
@@ -112,12 +82,19 @@ function SignUpForm({setUser}) {
           required
         />
         <br />
-        <select id="type" onChange={handleChange} >
+        <label htmlFor="team">Team: </label>
+        <select id="team_id" onChange={handleChange} value={formData.team_id}>
+            {selectTeam}
+        </select>
+        <br />
+        <label htmlFor="type">Account Type: </label>
+        <select id="type" onChange={handleChange} value={formData.type} >
             <option value="Coach">Coach</option>
             <option value="Athlete">Athlete</option>
         </select>
+        <br/>
         <button type="submit"> {isLoading ? "Loading..." : "Sign Up"} </button>
-        {errors ? errors.map((err) => <p key={err}>{err}</p>) : null}
+        {/* {errors ? errors.map((err) => <p key={err}>{err}</p>) : null} */}
       </form>
     </div>
   );

@@ -2,14 +2,14 @@ import { useState } from "react";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 
-function LoginPage({ onLogin, teams }) {
+function LoginPage({ onLogin, teams, onSignUpSubmit, setUser}) {
   const [showLogin, setShowLogin] = useState(true);
-    console.log(teams)
+    
   return (
     <div>
       {showLogin ? (
         <>
-          <LoginForm onLogin={onLogin} />
+          <LoginForm onLogin={onLogin} setUser={setUser}/>
           <br />
           <p className="login-form">
             Don't have an account? &nbsp;
@@ -18,7 +18,7 @@ function LoginPage({ onLogin, teams }) {
         </>
       ) : (
         <>
-          <SignUpForm onLogin={onLogin} teams={teams}/>
+          <SignUpForm onLogin={onLogin} teams={teams} onSignUpSubmit={onSignUpSubmit}/>
           <p className="login-form">
             Already have an account? &nbsp;
             <button onClick={() => setShowLogin(true)}>Log In</button>
