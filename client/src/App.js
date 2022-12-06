@@ -1,19 +1,34 @@
 import {useState, useEffect} from 'react'
 import './App.css';
 import LoginPage from './components/LoginPage';
+import { Route, Routes, Navigate } from "react-router-dom";
+import Header from './components/Header';
+import Nav from './components/Nav';
+import Home from './components/Home';
+import Profile from './components/Profile'
+import {useSelector, useDispatch} from 'react-redux'
+import {setUser} from './features/user/userSlice'
+import { setTeams } from './features/teams/teamSlice'
 
 function App() {
 
-  const [user, setUser] = useState(false)
-  const [teams, setTeams] = useState([])
+  const user = useSelector((state) => state.user.value)
+  const dispatch = useDispatch()
+
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     fetch("/teams")
     .then((res) => res.json())
-    .then((allTeams) => setTeams(allTeams)
+    .then((allTeams) => dispatch(setTeams(allTeams))
     )
+  }, [dispatch])
+
+  useEffect(() => {
+    fetch("/me")
+    .then((res) => res.json())
+    .then((user) => dispatch(setUser(user)))
   }, [])
 
   function onSignUpSubmit(formData) {
@@ -33,7 +48,7 @@ function App() {
         if (res.ok) {
           res.json().then((updatedUser) => {
             console.log(updatedUser)
-            setUser(updatedUser);
+            dispatch((setUser(updatedUser)));
           });
         } else {
           res.json().then((err) => setErrors(err.errors));
@@ -42,27 +57,24 @@ function App() {
     }
   }
 
-  function handleLogoutClick(e) {
-    fetch(`/logout`, { method: "DELETE" }).then((res) => {
-      if (res.ok) {
-        setUser(null)
-      }
-    });
-  }
+
 
   if (user) {
   return ( 
-    <div>
-      <h1>Track Tracker</h1>
-      <h4>{user.first_name}</h4>
-      <button onClick={handleLogoutClick}>Log out</button>
+    <div className='App'>
+      <Header />
+      <Nav />
+      <Profile user={user} setUser={setUser}/>
+      <h2>{user.first_name}</h2>
     </div>
   );
   } else {
     return ( 
-      <div>
-        <h1>Track Tracker</h1>
-        {user ? <h2>Welcome {user.first_name}</h2> : <LoginPage onSignUpSubmit={onSignUpSubmit} teams={teams} isLoading={isLoading} setUser={setUser}/>}
+      <div className='App'>
+        <Header />
+        <Nav /> 
+        <Home />
+        <LoginPage onSignUpSubmit={onSignUpSubmit}/>
       </div>
     );
   }
