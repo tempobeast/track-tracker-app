@@ -13,7 +13,7 @@ class ApplicationController < ActionController::API
     end
 
     def find_user
-        user.find_by(id: session[:user_id])
+        User.find_by(id: session[:user_id])
     end
 
     def render_unprocessable_entity(invalid)
