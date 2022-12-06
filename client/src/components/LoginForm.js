@@ -1,7 +1,12 @@
 import { useState } from "react";
+import {useSelector, useDispatch} from 'react-redux'
+import {setUser} from '../features/user/userSlice'
 
-function LoginForm({setUser}) {
 
+function LoginForm() {
+
+  const user = useSelector((state) => state.user.value)
+  const dispatch = useDispatch()
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -19,7 +24,7 @@ function LoginForm({setUser}) {
     }).then((res) => {
       if (res.ok) {
         res.json().then((user) => {
-          setUser(user);
+          dispatch(setUser(user));
         });
       } else {
         res.json().then((data) => setErrors(data.errors));
