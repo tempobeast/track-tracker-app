@@ -1,12 +1,13 @@
 import { useState } from "react";
-import {useSelector, useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
 import {setUser} from '../features/user/userSlice'
+import { useNavigate } from 'react-router-dom'
 
 
 function LoginForm() {
 
-  const user = useSelector((state) => state.user.value)
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -25,6 +26,7 @@ function LoginForm() {
       if (res.ok) {
         res.json().then((user) => {
           dispatch(setUser(user));
+          navigate("/user_profile")
         });
       } else {
         res.json().then((data) => setErrors(data.errors));
