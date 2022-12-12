@@ -1,5 +1,6 @@
 puts "🌱 Seeding spices..."
 
+Team.create(name: "Unaffiliated")
 Team.create(name: "Seahawks")
 
 Coach.create(first_name: "Pete", last_name: "Carrol", username: "sweetpete71", team_id: 1)
