@@ -1,6 +1,5 @@
 import {useState, useEffect} from 'react'
 import './App.css';
-import LoginPage from './components/LoginPage';
 import { Route, Routes, Navigate } from "react-router-dom";
 import Header from './components/Header';
 import Nav from './components/Nav';
