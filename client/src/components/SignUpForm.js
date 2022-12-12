@@ -1,8 +1,15 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from 'react-redux'
+import { setUser } from '../features/user/userSlice'
 
-function SignUpForm({onSignUpSubmit, teams, isLoading}) {
 
-  const [formData, setFormData] = useState({})
+function SignUpForm() {
+
+  const teams = useSelector((state) => state.teams.value);
+  const dispatch = useDispatch();
+  const [formData, setFormData] = useState({});
+  const [errors, setErrors] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   function handleChange(e) {
     setFormData({
@@ -11,17 +18,41 @@ function SignUpForm({onSignUpSubmit, teams, isLoading}) {
     })
   }
 
-  function handleSubmit(e) {
+  function handleNewUserSubmit(e) {
     e.preventDefault();
-    onSignUpSubmit(formData)
+    if (formData.password !== formData.password_confirmation) {
+      alert("Passwords do not match");
+    } else {
+      setErrors([]);
+      setIsLoading(true);
+      fetch("/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }).then((res) => {
+        setIsLoading(false);
+        if (res.ok) {
+          res.json().then((updatedUser) => {
+            console.log(updatedUser)
+            dispatch((setUser(updatedUser)));
+          });
+        } else {
+          res.json().then((err) => setErrors(err.errors));
+        }
+      });
+    }
   }
+
+console.log(formData)
 
   const selectTeam = teams.map((team) => <option key={team.id} value={team.id}>{team.name}</option>)
 
   return (
     <div>
       <h1>Signup: </h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleNewUserSubmit}>
         <label htmlFor="username">Username: </label>
         <input
           type="text"
@@ -88,7 +119,8 @@ function SignUpForm({onSignUpSubmit, teams, isLoading}) {
         </select>
         <br />
         <label htmlFor="type">Account Type: </label>
-        <select id="type" onChange={handleChange} value={formData.type} >
+        <select id="type" onChange={handleChange} value={formData.type} placeholder="Select an option">
+            <option defaultValue="">Select an option</option>
             <option value="Coach">Coach</option>
             <option value="Athlete">Athlete</option>
         </select>
