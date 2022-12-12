@@ -7,8 +7,9 @@ import Nav from './components/Nav';
 import Home from './components/Home';
 import Profile from './components/Profile'
 import {useSelector, useDispatch} from 'react-redux'
-import {setUser} from './features/user/userSlice'
+import { setUser } from './features/user/userSlice'
 import { setTeams } from './features/teams/teamSlice'
+import AthleteContainer from './components/AthleteContainer';
 
 function App() {
 
@@ -19,53 +20,31 @@ function App() {
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
+    fetch("/me").then((res) => {
+      if (res.ok) {
+        res.json().then((user) => dispatch(setUser(user)))
+      } else {
+        res.json().then((err) => setErrors(err.errors))
+      }
+    })
+  }, [])
+
+  useEffect(() => {
     fetch("/teams")
     .then((res) => res.json())
     .then((allTeams) => dispatch(setTeams(allTeams))
     )
   }, [dispatch])
 
-  useEffect(() => {
-    fetch("/me")
-    .then((res) => res.json())
-    .then((user) => dispatch(setUser(user)))
-  }, [])
-
-  function onSignUpSubmit(formData) {
-    if (formData.password !== formData.password_confirmation) {
-      alert("Passwords do not match");
-    } else {
-      setErrors([]);
-      setIsLoading(true);
-      fetch("/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      }).then((res) => {
-        setIsLoading(false);
-        if (res.ok) {
-          res.json().then((updatedUser) => {
-            console.log(updatedUser)
-            dispatch((setUser(updatedUser)));
-          });
-        } else {
-          res.json().then((err) => setErrors(err.errors));
-        }
-      });
-    }
-  }
-
-
-
   if (user) {
   return ( 
     <div className='App'>
       <Header />
       <Nav />
-      <Profile user={user} setUser={setUser}/>
-      <h2>{user.first_name}</h2>
+      <Routes>
+        <Route path="user_profile" element={<Profile />}/>
+        <Route path="view_athletes" element={<AthleteContainer/>} />
+      </Routes>
     </div>
   );
   } else {
@@ -73,8 +52,10 @@ function App() {
       <div className='App'>
         <Header />
         <Nav /> 
-        <Home />
-        <LoginPage onSignUpSubmit={onSignUpSubmit}/>
+        <Routes>
+          <Route path="/" element={<Home />}/>
+        </Routes>
+        
       </div>
     );
   }
