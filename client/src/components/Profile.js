@@ -10,25 +10,36 @@ import DayThumbnailContainer from "./DayThumbnailContainer";
 import WorkoutCard from "./WorkoutCard";
 
 function Profile() {
-    const [value, onChange] = useState(new Date());
+    const [clickedDateValue, setClickedDate] = useState(new Date());
     const user = useSelector((state) => state.user.value);
     const {workouts} = user;
     const [currentWeek, setCurrentWeek] = useState([]);
     const [showMonth, setShowMonth] = useState(false);
-    const dateToISO = value.toISOString().slice(0, 10);
-    const dateToString = value.toString().slice(0, 15);
+    const dateToISO = clickedDateValue.toISOString().slice(0, 10);
+    const dateToString = clickedDateValue.toString().slice(0, 15);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    console.log(`outside: ${clickedDateValue}`)
+    console.log(`outside: ${currentWeek}`)
     
     useEffect(() => {
-        const fullWeek = []
-        for (let i = 0; i < 7; i++) {
-            const date = new Date(value.setDate(value.getDate() - value.getDay() + i))
-            fullWeek.push(date)
-        }
-        setCurrentWeek(fullWeek)
-    }, [value])
+        createWeek(clickedDateValue)
+    }, [])
+
+    function createWeek(clickedDate) {
+      const mutableClickedDate = new Date (clickedDate)
+      const fullWeek = []
+      const prevSunday = new Date(mutableClickedDate.setDate(mutableClickedDate.getDate() - mutableClickedDate.getDay() - 1))
+      // fullWeek.push(date)
+      for (let i = 0; i < 7; i++) {
+        fullWeek.push(new Date(prevSunday.setDate(prevSunday.getDate() + 1)))
+            }
+      setCurrentWeek(fullWeek)
+      console.log(mutableClickedDate)
+      console.log(clickedDate)
+    }
    
     function handleLogoutClick(e) {
         fetch(`/logout`, { method: "DELETE" }).then((res) => {
@@ -42,33 +53,31 @@ function Profile() {
       function handleShowMonthClick(e) {
         setShowMonth(!showMonth)
       }
+
+      function onCalendarChange(date) {
+        console.log(date)
+        createWeek(date)
+        setClickedDate(date)
+      }
     
-    const findWorkout = workouts.find((workout) => workout.date === value.toLocaleDateString('pt-br').split('/').reverse().join('-'))
+    const findWorkout = workouts.find((workout) => workout.date === clickedDateValue.toLocaleDateString('pt-br').split('/').reverse().join('-'))
 
 return (
     <div id="profile">
         <h3>{user.first_name}</h3>
         <button onClick={handleShowMonthClick}>{showMonth ? "Hide Month" : "Show Month"}</button>
-        {showMonth ?
-            <Calendar 
-            value={value} 
-            onChange={onChange} 
-            className="day" 
-            calendarType="US"
-        />
-        :
-        null
+        {showMonth
+          ? <Calendar clickedDateValue={clickedDateValue} onChange={(date) => onCalendarChange(date)} className="day" calendarType="US"/>
+          : null
         }
-        <DayThumbnailContainer currentWeek={currentWeek} workout={findWorkout}/>
-            {
-            findWorkout ? 
-                <WorkoutCard workout={findWorkout} dateToString={dateToString}/>
-                : 
-                <CreateNewWorkout dateToString={dateToString} dateToISO={dateToISO}
-                />
-            }
+        <DayThumbnailContainer currentWeek={currentWeek} workout={findWorkout} onCalendarChange={(date) => onCalendarChange(date)}/>
+        {
+        findWorkout 
+        ? <WorkoutCard workout={findWorkout} dateToString={dateToString}/>
+        : <CreateNewWorkout dateToString={dateToString} dateToISO={dateToISO}/>
+        }
         <div>
-            <button onClick={handleLogoutClick}>Log out</button>
+          <button onClick={handleLogoutClick}>Log out</button>
         </div>
     </div>
     

@@ -4,9 +4,9 @@ import DayThumbnail from "./DayThumbnail";
 
 
 
-function DayThumbnailContainer ({currentWeek, workout}) {
+function DayThumbnailContainer ({currentWeek, workout, onCalendarChange}) {
 
-    const daysOfTheWeek = currentWeek.map((day) => <DayThumbnail day={day} key={day.toString()}/>)
+    const daysOfTheWeek = currentWeek.map((day) => <DayThumbnail day={day} onCalendarChange={onCalendarChange} key={day.toString()}/>)
     
     return (
         <div id="day_thumb_container">
