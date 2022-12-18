@@ -4,13 +4,25 @@ import "../App.css";
 function WorkoutCard ({ workout, dateToString }) {
 
     const {workout_type, details, approx_duration, add_ons} = workout
+    const createId = () => workout_type.toLowerCase().split(" ").join("_")
+    const dateSplit = dateToString.split(" ")
+    const day = dateSplit[0]
+    const month = dateSplit[1]
+    const dateNumber = dateSplit[2]
+    const year = dateSplit[3]
+    console.log(dateSplit)
 
+    
     // const averageWorkoutRating = workout.log_entries.reduce(function(acc, entry) {return acc + entry.workout_rating}, 0)/workout.log_entries.length;
 
     return (
-        <div className="workout_card">
-            <h4 className="workout_date">{dateToString}</h4>
+        <div className="workout_card" id={workout ? createId() : "no_workout"}>
+            <div className="workout_card_header">
+                <h1 className="workout_date">{dateNumber}</h1>
+                <h4 className="workout_month">{month}</h4>
+            </div>
             <h3 className="workout_type">{workout_type}</h3>
+            <h4 className="workout_year">{year}</h4>
         </div>
     )
 }
