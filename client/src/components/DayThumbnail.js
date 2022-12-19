@@ -17,7 +17,7 @@ function DayThumbnail ({day, onCalendarChange}) {
     const createId = () => workout.workout_type.toLowerCase().split(" ").join("_")
     
     return (
-        <div className="day_thumb" id={workout ? createId() : null} onClick={handleThumbnailClick}>
+        <div className="day_thumb" id={workout ? createId() : "no_workout"} onClick={handleThumbnailClick}>
             <h4>{shortDate}</h4>
             {workout ? <h5>{workout.workout_type}</h5> : <h5>Add Workout</h5>}
         </div>
