@@ -19,9 +19,9 @@ function WorkoutCard ({ workout, dateToString }) {
         <div className="workout_card" id={workout ? createId() : "no_workout"}>
             <div className="workout_card_header">
                 <h1 className="workout_date">{dateNumber}</h1>
-                <h4 className="workout_month">{month}</h4>
+                <h4 className="workout_month">{month.toUpperCase()}</h4>
             </div>
-            <h3 className="workout_type">{workout_type}</h3>
+            <h2 className="workout_type">{workout_type}</h2>
             <h4 className="workout_year">{year}</h4>
         </div>
     )
