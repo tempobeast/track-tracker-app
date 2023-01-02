@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "../App.css";
 import {useSelector, useDispatch} from 'react-redux'
 import { setWorkouts } from '../features/workouts/workoutsSlice'
+import IntervalForm from "./IntervalForm";
+import RunDistanceOrDurationForm from "./RunDistanceOrDurationForm";
 
 function CreateNewWorkout ({ dateToString, dateToISO }) {
 
@@ -42,25 +44,13 @@ function CreateNewWorkout ({ dateToString, dateToISO }) {
                         <option value="Rest">Rest</option>
                     </select>
                 </label><br/>
-                { newWorkoutFormData.workoutType === "Long Run" || newWorkoutFormData.workoutType === "Recovery" ? (
-                    <div>
-                        <label htmlFor="duration">
-                        Duration:
-                            <input value={newWorkoutFormData.duration} onChange={handleFormChange} name="duration" type="number"/>
-                        </label><br/>
-                        <label htmlFor="pace">
-                        Pace: 
-                            <input value={newWorkoutFormData.pace} onChange={handleFormChange} name="pace" />
-                        </label><br/>
-                        <label htmlFor="addOns">
-                            Add-Ons: 
-                            <textarea value={newWorkoutFormData.addOns} onChange={handleFormChange} name="addOns" />
-                        </label><br/>
-                    </div>
-                )
-                : 
-                null
-            }
+                { 
+                    newWorkoutFormData.workoutType === "Long Run" || newWorkoutFormData.workoutType === "Recovery" 
+                    ? <RunDistanceOrDurationForm/>
+                    : newWorkoutFormData.workoutType === "Rest" 
+                    ? null 
+                    :  <IntervalForm/>
+                }
                 <input type="submit" value="Submit" />
             </form>
         </div>
