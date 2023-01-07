@@ -20,9 +20,6 @@ function Profile() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
-    console.log(`outside: ${clickedDateValue}`)
-    console.log(`outside: ${currentWeek}`)
     
     useEffect(() => {
         createWeek(clickedDateValue)
@@ -37,8 +34,6 @@ function Profile() {
         fullWeek.push(new Date(prevSunday.setDate(prevSunday.getDate() + 1)))
             }
       setCurrentWeek(fullWeek)
-      console.log(mutableClickedDate)
-      console.log(clickedDate)
     }
    
     function handleLogoutClick(e) {
@@ -55,7 +50,6 @@ function Profile() {
       }
 
       function onCalendarChange(date) {
-        console.log(date)
         createWeek(date)
         setClickedDate(date)
       }
