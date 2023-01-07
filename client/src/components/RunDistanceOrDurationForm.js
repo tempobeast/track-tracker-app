@@ -1,29 +1,35 @@
 import React, {useState} from "react";
 
-function RunDistanceOrDurationForm() {
+function RunDistanceOrDurationForm( {newWorkoutFormData, setNewWorkoutFormData} ) {
 
-    const [unitOfMeasure, setUnitOfMeasure] = useState('meters')
+    const [runDetail, setRunDetail] = useState({
+        distance_or_duration: "",
+        unit_of_measure: "meters"
+    })
 
-    function handleUnitOfMeasureChange(e) {
-        setUnitOfMeasure(e.target.value)
+    function handleRunDetailChange(e) {
+        setRunDetail({...runDetail, [e.target.name]: e.target.value})
     }
 
-    function handleDrillIntervalClick(e) {
-
+    function handleRunDetailSubmit(e) {
+        e.preventDefault();
+        const detail = `${runDetail.distance_or_duration} ${runDetail.unit_of_measure} run`
+        setNewWorkoutFormData({...newWorkoutFormData, details: detail})
     }
 
     return (
         <div>
-            <form>
+            <form onSubmit={handleRunDetailSubmit}>
                 <div className="interval_form_item">
                     <label>Description: </label>
-                    <input type="number"></input>
-                    <select name="unit_of_measure" onChange={handleUnitOfMeasureChange}>
-                        <option value="meters">meters</option>
-                        <option value="miles">miles</option>
-                        <option value="minutes">minutes</option>
+                    <input onChange={handleRunDetailChange} name="distance_or_duration" type="number"></input>
+                    <select name="unit_of_measure" onChange={handleRunDetailChange}>
+                        <option defaultValue="meters">meters</option>
+                        <option value="mile">miles</option>
+                        <option value="minute">minutes</option>
                     </select>
                 </div>
+                <button type="submit">Next</button>
             </form>
         </div>
     )
