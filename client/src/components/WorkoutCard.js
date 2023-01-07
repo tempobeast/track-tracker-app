@@ -10,8 +10,8 @@ function WorkoutCard ({ workout, dateToString }) {
     const month = dateSplit[1]
     const dateNumber = dateSplit[2]
     const year = dateSplit[3]
-    console.log(dateSplit)
 
+    // const displayWorkoutDetails = details.map((detail) => <p>{detail}</p>)
     
     // const averageWorkoutRating = workout.log_entries.reduce(function(acc, entry) {return acc + entry.workout_rating}, 0)/workout.log_entries.length;
 
@@ -22,7 +22,8 @@ function WorkoutCard ({ workout, dateToString }) {
                 <h4 className="workout_month">{month.toUpperCase()}</h4>
             </div>
             <h2 className="workout_type">{workout_type}</h2>
-            <h4 className="workout_year">{year}</h4>
+            {workout_type === "Long Run" ? <p>{details}</p> : details.map((detail) => <p>{detail}</p>)}
+            <h3 className="workout_year">{year}</h3>
         </div>
     )
 }
