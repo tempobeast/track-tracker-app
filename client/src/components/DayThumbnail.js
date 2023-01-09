@@ -5,7 +5,7 @@ import {useSelector} from 'react-redux'
 
 function DayThumbnail ({day, onCalendarChange}) {
     const user = useSelector((state) => state.user.value)
-    const {workouts} = user
+    const workouts = useSelector((state) => state.workouts.value)
     const fullDate = day.toString().slice(0, 15)
     const shortDate = fullDate.slice(0, 10)
 
