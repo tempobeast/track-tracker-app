@@ -12,7 +12,7 @@ import WorkoutCard from "./WorkoutCard";
 function Profile() {
     const [clickedDateValue, setClickedDate] = useState(new Date());
     const user = useSelector((state) => state.user.value);
-    const {workouts} = user;
+    const workouts = useSelector((state) => state.workouts.value)
     const [currentWeek, setCurrentWeek] = useState([]);
     const [showMonth, setShowMonth] = useState(false);
     const dateToISO = clickedDateValue.toISOString().slice(0, 10);
@@ -53,6 +53,9 @@ function Profile() {
         createWeek(date)
         setClickedDate(date)
       }
+
+      // console.log(workouts[0].details.split(", "))
+
     
     const findWorkout = workouts.find((workout) => workout.date === clickedDateValue.toLocaleDateString('pt-br').split('/').reverse().join('-'))
 
