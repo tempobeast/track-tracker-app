@@ -8,13 +8,15 @@ import RunDistanceOrDurationForm from "./RunDistanceOrDurationForm";
 function CreateNewWorkout ({ dateToString, dateToISO }) {
 
     const dispatch = useDispatch()
+    // const user = useSelector((state) => state.user.value)
     const workouts = useSelector((state) => state.workouts.value)
     const [errors, setErrors] = useState([])
 
     const [newWorkoutFormData, setNewWorkoutFormData] = useState({
         date: dateToISO,
         workout_type: "Long Run",
-        details: [],
+        distance_or_duration: "",
+        unit_of_measure: "miles",
         add_ons: ""
     })
 
@@ -26,15 +28,24 @@ function CreateNewWorkout ({ dateToString, dateToISO }) {
 
     function handleFormSubmit(e){
         e.preventDefault();
+        const runDetails = `${newWorkoutFormData.distance_or_duration} ${newWorkoutFormData.unit_of_measure} run`
+        const formDataToSubmit = {
+            date: dateToISO,
+            workout_type: newWorkoutFormData.workout_type,
+            details: runDetails,
+            add_ons: newWorkoutFormData.add_ons
+        }
         fetch("/workouts", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(newWorkoutFormData),
+            body: JSON.stringify(formDataToSubmit),
         }).then((res) => {
             if (res.ok) {
-                res.json().then((workout) => dispatch(setWorkouts([...workouts, workout]))
+                res.json().then((workout) => {
+                    dispatch(setWorkouts([...workouts, workout]))
+                }
                 )
             } else {
                 res.json().then((err) => setErrors(err.errors))
@@ -42,11 +53,10 @@ function CreateNewWorkout ({ dateToString, dateToISO }) {
         })
     }
 
-    console.log(newWorkoutFormData)
     return (
         <div>
         <h2>{dateToString}</h2>
-            {/* <form onSubmit={handleFormSubmit} className="new_workout_form"> */}
+            <form onSubmit={handleFormSubmit} className="new_workout_form">
                 <label htmlFor="workout_type">
                     workout type: 
                     <select name="workout_type" onChange={handleFormChange} value={newWorkoutFormData.workout_type}>
@@ -62,15 +72,15 @@ function CreateNewWorkout ({ dateToString, dateToISO }) {
                     newWorkoutFormData.workout_type === "Long Run" || newWorkoutFormData.workout_type === "Recovery" 
                     ? <RunDistanceOrDurationForm 
                         // onDetailSubmit={onDetailSubmit}
-k                        newWorkoutFormData={newWorkoutFormData} 
-                        setNewWorkoutFormData={setNewWorkoutFormData} 
+                        handleFormChange={handleFormChange}
                         />
                     : newWorkoutFormData.workout_type === "Rest" 
                     ? null 
                     :  <IntervalForm/>
                 }
-                <button onClick={handleFormSubmit}>Submit Workout</button>
-            {/* </form> */}
+                <button onSubmit={handleFormSubmit}>Submit Workout</button>
+                {errors ? <p>{errors}</p> : null}
+            </form>
         </div>
         
     )
