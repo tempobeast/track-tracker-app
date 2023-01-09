@@ -9,6 +9,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import { setUser } from './features/user/userSlice'
 import { setTeams } from './features/teams/teamSlice'
 import AthleteContainer from './components/AthleteContainer';
+import { setWorkouts } from './features/workouts/workoutsSlice';
 
 function App() {
 
@@ -21,7 +22,10 @@ function App() {
   useEffect(() => {
     fetch("/me").then((res) => {
       if (res.ok) {
-        res.json().then((user) => dispatch(setUser(user)))
+        res.json().then((user) => {
+          dispatch(setUser(user))
+          dispatch(setWorkouts(user.workouts))
+        })
       } else {
         res.json().then((err) => setErrors(err.errors))
       }
