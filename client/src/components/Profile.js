@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom"
 import CreateNewWorkout from "./CreateWorkout";
 import DayThumbnailContainer from "./DayThumbnailContainer";
 import WorkoutCard from "./WorkoutCard";
+import { format } from 'date-fns'
 
 function Profile() {
     const [clickedDateValue, setClickedDate] = useState(new Date());
@@ -20,6 +21,8 @@ function Profile() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    console.log(format(clickedDateValue, 'yyyy-MM-dd'))
+    
     
     useEffect(() => {
         createWeek(clickedDateValue)
@@ -29,7 +32,6 @@ function Profile() {
       const mutableClickedDate = new Date (clickedDate)
       const fullWeek = []
       const prevSunday = new Date(mutableClickedDate.setDate(mutableClickedDate.getDate() - mutableClickedDate.getDay() - 1))
-      // fullWeek.push(date)
       for (let i = 0; i < 7; i++) {
         fullWeek.push(new Date(prevSunday.setDate(prevSunday.getDate() + 1)))
             }
@@ -57,7 +59,7 @@ function Profile() {
       // console.log(workouts[0].details.split(", "))
 
     
-    const findWorkout = workouts.find((workout) => workout.date === clickedDateValue.toLocaleDateString('pt-br').split('/').reverse().join('-'))
+    const findWorkout = workouts.find((workout) => workout.date === format(clickedDateValue, 'yyyy-MM-dd'))
 
 return (
     <div id="profile">
