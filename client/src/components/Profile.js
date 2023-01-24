@@ -16,13 +16,11 @@ function Profile() {
     const workouts = useSelector((state) => state.workouts.value)
     const [currentWeek, setCurrentWeek] = useState([]);
     const [showMonth, setShowMonth] = useState(false);
-    const dateToISO = clickedDateValue.toISOString().slice(0, 10);
-    const dateToString = clickedDateValue.toString().slice(0, 15);
+    const dateToISO = format(clickedDateValue, 'yyyy-MM-dd');
+    const dateToString = format(clickedDateValue, "eee LLL dd yyyy");
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-    console.log(format(clickedDateValue, 'yyyy-MM-dd'))
-    
+    const navigate = useNavigate();    
     
     useEffect(() => {
         createWeek(clickedDateValue)
@@ -37,7 +35,7 @@ function Profile() {
             }
       setCurrentWeek(fullWeek)
     }
-   
+       
     function handleLogoutClick(e) {
         fetch(`/logout`, { method: "DELETE" }).then((res) => {
           if (res.ok) {
@@ -56,9 +54,6 @@ function Profile() {
         setClickedDate(date)
       }
 
-      // console.log(workouts[0].details.split(", "))
-
-    
     const findWorkout = workouts.find((workout) => workout.date === format(clickedDateValue, 'yyyy-MM-dd'))
 
 return (
