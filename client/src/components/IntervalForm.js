@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import IntervalItemForm from "./IntervalItemForm";
 import RunDistanceOrDurationForm from "./RunDistanceOrDurationForm";
 
-function IntervalForm() {
+function IntervalForm({ }) {
 
     const [warmUp, setWarmUp] = useState(false)
     const [drill, setDrill] = useState([])
@@ -17,6 +17,7 @@ function IntervalForm() {
         <div>
             {warmUp ? <RunDistanceOrDurationForm/> : null}
             {drill > 0 ? <IntervalItemForm/> : null}
+            <IntervalItemForm/>
             {intervalDistance > 0 ? <IntervalItemForm/> : null}
             {coolDown ? <RunDistanceOrDurationForm/> : null}
         </div>
