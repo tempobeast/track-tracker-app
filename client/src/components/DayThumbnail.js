@@ -1,19 +1,20 @@
 import React from "react";
 import "../App.css";
 import {useSelector} from 'react-redux'
+import {format} from 'date-fns'
 
 
 function DayThumbnail ({day, onCalendarChange}) {
     const user = useSelector((state) => state.user.value)
     const workouts = useSelector((state) => state.workouts.value)
-    const fullDate = day.toString().slice(0, 15)
+    const fullDate = format(day, "eee LLL dd yyyy")
     const shortDate = fullDate.slice(0, 10)
 
     function handleThumbnailClick(e) {
         onCalendarChange(day)
     }
     
-    const workout = workouts.find((workout) => workout.date === day.toISOString().slice(0, 10))
+    const workout = workouts.find((workout) => workout.date === format(day, "yyyy-LL-dd"))
     const createId = () => workout.workout_type.toLowerCase().split(" ").join("_")
     
     return (
