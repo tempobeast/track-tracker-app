@@ -51,8 +51,8 @@ function RunDistanceOrDurationForm({dateToString, workoutType}) {
         <div>
             <form onSubmit={handleFormSubmit}>
                 <div className="interval_form_item">
-                    <label>Description: </label>
-                    <input onChange={handleFormChange} name="distance_or_duration" type="number"></input>
+                    <label>Description:</label>
+                    <input className="distance_or_duration_form" onChange={handleFormChange} name="distance_or_duration" type="number"></input>
                     <select name="unit_of_measure" onChange={handleFormChange}>
                         <option defaultValue="mile">miles</option>
                         <option value="kilometer">kilometers</option>
