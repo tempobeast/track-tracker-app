@@ -4,13 +4,15 @@ import DayThumbnail from "./DayThumbnail";
 
 
 
-function DayThumbnailContainer ({currentWeek, workout, onCalendarChange}) {
-
+function DayThumbnailContainer ({ currentWeek, clickedDateValue, onCalendarChange }) {
+    
     const daysOfTheWeek = currentWeek.map((day) => <DayThumbnail day={day} onCalendarChange={onCalendarChange} key={day.toString()}/>)
     
     return (
         <div id="day_thumb_container">
+            <button onClick={() => onCalendarChange(new Date(clickedDateValue.setDate(clickedDateValue.getDate() - 7)))}>last</button>
             {daysOfTheWeek}
+            <button onClick={() => onCalendarChange(new Date(clickedDateValue.setDate(clickedDateValue.getDate() + 7)))}>next</button>
         </div>
     )
 }
