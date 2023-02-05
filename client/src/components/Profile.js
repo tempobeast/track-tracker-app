@@ -64,7 +64,7 @@ return (
           ? <Calendar clickedDateValue={clickedDateValue} onChange={(date) => onCalendarChange(date)} className="day" calendarType="US"/>
           : null
         }
-        <DayThumbnailContainer clickedDateValue={clickedDateValue}  currentWeek={currentWeek} onCalendarChange={onCalendarChange} workout={findWorkout}/>
+        <DayThumbnailContainer clickedDateValue={clickedDateValue} currentWeek={currentWeek} onCalendarChange={onCalendarChange} workout={findWorkout}/>
         {
         findWorkout 
         ? <WorkoutCard workout={findWorkout} dateToString={dateToString}/>
