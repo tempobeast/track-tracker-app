@@ -8,7 +8,8 @@ function DayThumbnail ({day, onCalendarChange}) {
     const user = useSelector((state) => state.user.value)
     const workouts = useSelector((state) => state.workouts.value)
     const fullDate = format(day, "eee LLL dd yyyy")
-    const shortDate = fullDate.slice(0, 10)
+    const month = fullDate.slice(4, 7)
+    const dateNumber = fullDate.slice(8, 10)
 
     function handleThumbnailClick(e) {
         onCalendarChange(day)
@@ -19,8 +20,11 @@ function DayThumbnail ({day, onCalendarChange}) {
     
     return (
         <div className="day_thumb" id={workout ? createId() : "no_workout"} onClick={handleThumbnailClick}>
-            <h4>{shortDate}</h4>
-            {workout ? <h5>{workout.workout_type}</h5> : <h5>Add Workout</h5>}
+            <div className="day_thumb_date_container">
+                <h4 className="day_thumb_date">{dateNumber}</h4>
+                <h4 className="day_thumb_month">{month.toUpperCase()}</h4>
+            </div>
+            {workout ? <h5 className="day_thumb_detail">{workout.workout_type}</h5> : <h5 className="day_thumb_detail">Add Workout</h5>}
         </div>
     )
 }
