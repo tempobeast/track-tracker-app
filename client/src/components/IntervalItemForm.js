@@ -45,7 +45,7 @@ function IntervalItemForm({dateToString, workoutType}) {
 
     function handleIntervalFormSubmit(e) {
         e.preventDefault()
-        const intervalDetails = intervalInputFields.map((rep) => `${rep.qty} x ${rep.description} ${rep.interval_unit} @ ${rep.pace} pace with ${rep.rest} ${rep.rest_unit} rest`)
+        const intervalDetails = intervalInputFields.map((rep) => rep.rest < 0 ? `${rep.qty} x ${rep.description} ${rep.interval_unit} @ ${rep.pace} pace with ${rep.rest} ${rep.rest_unit} rest` : `${rep.qty} x ${rep.description} ${rep.interval_unit} @ ${rep.pace} pace`)
         const warmUpString = `${warmUp.warm_up_description} ${warmUp.warm_up_unit} warm up`
         const coolDownString = `${coolDown.cool_down_description} ${coolDown.cool_down_unit} cool down`
         intervalDetails.unshift(warmUpString)
@@ -76,7 +76,7 @@ function IntervalItemForm({dateToString, workoutType}) {
     return (
         <div>
             <form onSubmit={handleIntervalFormSubmit}>
-                <input className="interval_form_entry_item" name="warm_up_description" type="number" placeholder="warm up" onChange={(e) => handleWarmUpChange(e)}/>
+                <input className="distance_or_duration_form" name="warm_up_description" type="number" placeholder="warm up" onChange={(e) => handleWarmUpChange(e)}/>
                 <select className="interval_form_entry_item" name="warm_up_unit" onChange={(e) => handleWarmUpChange(e)}>
                     <option value="meter">meters</option>
                     <option value="mile">miles</option>
@@ -107,14 +107,17 @@ function IntervalItemForm({dateToString, workoutType}) {
                     })
                 }
                 <button onClick={handleAddRepClick}>Add Rep</button>
-                <input className="interval_form_entry_item" name="cool_down_description" type="number" placeholder="cool down" onChange={(e) => handleCoolDownChange(e)}/>
+                <br/>
+                <input className="distance_or_duration_form" name="cool_down_description" type="number" placeholder="cool down" onChange={(e) => handleCoolDownChange(e)}/>
                 <select className="interval_form_entry_item" name="cool_down_unit" onChange={(e) => handleCoolDownChange(e)}>
                     <option value="meter">meters</option>
                     <option value="mile">miles</option>
                     <option value="minute">minutes</option>
                 </select>
-                <button onClick={handleIntervalFormSubmit}>Submit Interval Form</button>
+                <br/>
+                <button onClick={handleIntervalFormSubmit}>Submit {workoutType} Form</button>
             </form>
+            {errors ? errors.map((err) => <p>{errors}</p>) : null}
         </div>
     )
 }
