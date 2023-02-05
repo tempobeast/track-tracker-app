@@ -12,7 +12,6 @@ function WorkoutCard ({ workout, dateToString }) {
     const year = dateSplit[3]
 
     const detailsToDisplay = details.map((detail) => <p key={detail}>{detail}</p>)
-
     
     // const displayWorkoutDetails = details.map((detail) => <p>{detail}</p>)
     
