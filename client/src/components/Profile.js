@@ -24,7 +24,7 @@ function Profile() {
     
     useEffect(() => {
         createWeek(clickedDateValue)
-    }, [])
+    }, [clickedDateValue])
 
     function createWeek(clickedDate) {
       const mutableClickedDate = new Date (clickedDate)
@@ -64,7 +64,7 @@ return (
           ? <Calendar clickedDateValue={clickedDateValue} onChange={(date) => onCalendarChange(date)} className="day" calendarType="US"/>
           : null
         }
-        <DayThumbnailContainer currentWeek={currentWeek} workout={findWorkout} onCalendarChange={(date) => onCalendarChange(date)}/>
+        <DayThumbnailContainer clickedDateValue={clickedDateValue}  currentWeek={currentWeek} onCalendarChange={onCalendarChange} workout={findWorkout}/>
         {
         findWorkout 
         ? <WorkoutCard workout={findWorkout} dateToString={dateToString}/>
