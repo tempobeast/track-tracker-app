@@ -349,6 +349,7 @@ input[type=submit]:hover {
 
 .day_thumb_detail{
   font-size: calc(10px + .5vw);
+  margin-top: 5px;
 }
 
 #day_thumb_container {
