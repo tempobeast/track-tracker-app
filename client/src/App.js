@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Nav from './components/Nav';
 import Home from './components/Home';
 import Profile from './components/Profile'
+import AthleteProfile from './components/AthleteProfile'
 import {useSelector, useDispatch} from 'react-redux'
 import { setUser } from './features/user/userSlice'
 import { setTeams } from './features/teams/teamSlice'
@@ -39,7 +40,9 @@ function App() {
     )
   }, [dispatch])
 
-  if (user) {
+console.log(user)
+
+  if (user && user.type === "Coach") {
   return ( 
     <div className='App'>
       <Header />
@@ -50,6 +53,16 @@ function App() {
       </Routes>
     </div>
   );
+  } else if (user && user.type === "Athlete") {
+    return (
+      <div className='App'>
+      <Header />
+      <Nav />
+      <Routes>
+        <Route path="user_profile" element={<AthleteProfile user={user}/>}/>
+      </Routes>
+    </div>
+    )
   } else {
     return ( 
       <div className='App'>
@@ -58,7 +71,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}/>
         </Routes>
-        
       </div>
     );
   }

@@ -1,24 +1,32 @@
-# README
+# Track Tracker App 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Track Tracker is a React based app, supported by a Rails back end. The app allows a coach to create workouts. 
 
-Things you may want to cover:
+## Features
 
-* Ruby version
+The coach can add new athlete data, including name and age. 
 
-* System dependencies
+The coach can add workouts for the athletes to complete with data including the workout type, any specific distances and times, any supplementary exercises and the approximate duration of the workout. 
 
-* Configuration
+The athlete can then complete a workout log entry that includes the completed mileage, workout details, any comments and an overall rating of the exercise.
 
-* Database creation
+Each athlete that logs a workout is added to the tally in the bottom left corner of the workout card and the average workout rating is calculated so that the coach can evaluate the effectiveness and enjoyment of the workout.
 
-* Database initialization
+## Future Features
 
-* How to run the test suite
+In the future there will be two separate interfaces, one for the coach and one for each athlete. The current view is the coaches view. The athletes will have login credentials and will be able to view their own completed workouts, as well as those they are expected to complete. They will be able to view their weekly, monthly and yearly mileage totals and track their improvements over time. 
 
-* Services (job queues, cache servers, search engines, etc.)
+## Running the server 
 
-* Deployment instructions
+To run the server locally from the backend directory:  
 
-* ...
+```bundle install```
+
+```bundle exec rake server```
+
+To run the app from the frontend directory:
+
+```npm install```
+
+```npm start```
+
