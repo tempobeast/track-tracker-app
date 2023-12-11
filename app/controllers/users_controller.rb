@@ -10,8 +10,11 @@ class UsersController < ApplicationController
 
     def show 
         user = find_user
-        if user
+        if user && user.type == "Coach"
             render json: user, status: :ok
+        elsif user && user.type == "Athlete"
+            coach = user.coach.workouts
+            render json: [user, coach], status: :ok
         else
             render json: { errors: ["Not Authorized"] }, status: :unauthorized
         end
