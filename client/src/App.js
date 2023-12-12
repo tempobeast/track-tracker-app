@@ -15,6 +15,7 @@ import { setWorkouts } from './features/workouts/workoutsSlice';
 function App() {
 
   const user = useSelector((state) => state.user.value)
+  const workouts = useSelector((state) => state.workouts.value)
   const dispatch = useDispatch()
 
   const [isLoading, setIsLoading] = useState(false);
@@ -22,15 +23,15 @@ function App() {
 
   useEffect(() => {
     fetch("/me").then((res) => {
-      if (res.ok) {
-        res.json().then((user) => {
-          dispatch(setUser(user))
-          dispatch(setWorkouts(user.workouts))
-        })
-      } else {
-        res.json().then((err) => setErrors(err.errors))
-      }
-    })
+        if (res.ok) {
+          res.json().then((user) => {
+            dispatch(setUser(user))
+            dispatch(setWorkouts(user.workouts))
+          }) 
+        } else {
+          res.json().then((err) => setErrors(err.errors))
+        }
+      })
   }, [])
 
   useEffect(() => {
@@ -40,13 +41,17 @@ function App() {
     )
   }, [dispatch])
 
-console.log(user)
+  if(user && user.type === "Athlete") {
+      fetch('/workouts').then((res) => res.json())
+      .then((data) => dispatch(setWorkouts(data)))
+  }
 
   if (user && user.type === "Coach") {
   return ( 
     <div className='App'>
       <Header />
       <Nav />
+      <h1>Coach View</h1>
       <Routes>
         <Route path="user_profile" element={<Profile />}/>
         <Route path="view_athletes" element={<AthleteContainer/>} />
@@ -58,6 +63,7 @@ console.log(user)
       <div className='App'>
       <Header />
       <Nav />
+      <h1>Athlete View</h1>
       <Routes>
         <Route path="user_profile" element={<AthleteProfile user={user}/>}/>
       </Routes>

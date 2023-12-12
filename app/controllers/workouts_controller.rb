@@ -13,7 +13,7 @@ class WorkoutsController < ApplicationController
     def index
         user = find_user
         if user
-            workouts = user.workouts
+            workouts = user.coach.workouts
             render json: workouts, status: :ok
         else
             render json: {errors: ["Unauthorized"]}, status: :unauthorized
