@@ -23,7 +23,7 @@ function Nav() {
 return (
     <div id="nav">
       <NavLink className="nav_button" to="/user_profile">Home</NavLink>
-      <NavLink className="nav_button" to="/view_athletes">View Athletes</NavLink>
+      {user && user.type === "Coach" ? <NavLink className="nav_button" to="/view_athletes">View Athletes</NavLink> : null}
       {user ? <button onClick={handleLogoutClick}>logout</button> : null}
     </div>
     
