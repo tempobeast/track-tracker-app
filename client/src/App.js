@@ -20,13 +20,17 @@ function App() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState([]);
-
+  
   useEffect(() => {
     fetch("/me").then((res) => {
         if (res.ok) {
           res.json().then((user) => {
             dispatch(setUser(user))
-            dispatch(setWorkouts(user.workouts))
+            if(user.type === 'Coach'){
+              dispatch(setWorkouts(user.workouts))
+            } else {
+              dispatch(setWorkouts(user.workout_list))
+            }
           }) 
         } else {
           res.json().then((err) => setErrors(err.errors))
@@ -40,11 +44,6 @@ function App() {
     .then((allTeams) => dispatch(setTeams(allTeams))
     )
   }, [dispatch])
-
-  if(user && user.type === "Athlete") {
-      fetch('/workouts').then((res) => res.json())
-      .then((data) => dispatch(setWorkouts(data)))
-  }
 
   if (user && user.type === "Coach") {
   return ( 
