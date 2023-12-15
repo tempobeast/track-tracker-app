@@ -74,7 +74,7 @@ return (
         {
         findWorkout 
         ? <WorkoutCard workout={findWorkout} dateToString={dateToString}/>
-        : <CreateNewWorkout dateToString={dateToString} dateToISO={dateToISO}/>
+        : null
         }
         <div>
           <button onClick={handleLogoutClick}>Log out</button>
