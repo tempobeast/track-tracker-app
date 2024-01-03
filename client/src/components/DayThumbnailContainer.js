@@ -9,10 +9,12 @@ function DayThumbnailContainer ({ currentWeek, clickedDateValue, onCalendarChang
     const daysOfTheWeek = currentWeek.map((day) => <DayThumbnail day={day} onCalendarChange={onCalendarChange} key={day.toString()}/>)
     
     return (
-        <div id="day_thumb_container">
-            <button onClick={() => onCalendarChange(new Date(clickedDateValue.setDate(clickedDateValue.getDate() - 7)))}>last</button>
-            {daysOfTheWeek}
-            <button onClick={() => onCalendarChange(new Date(clickedDateValue.setDate(clickedDateValue.getDate() + 7)))}>next</button>
+        <div id="day_thumb_container-with-buttons">
+            <button className="day_thumb_container-button" onClick={() => onCalendarChange(new Date(clickedDateValue.setDate(clickedDateValue.getDate() - 7)))}>last</button>
+            <div id="day_thumb_container">
+                {daysOfTheWeek}
+            </div>
+            <button className="day_thumb_container-button" onClick={() => onCalendarChange(new Date(clickedDateValue.setDate(clickedDateValue.getDate() + 7)))}>next</button>
         </div>
     )
 }

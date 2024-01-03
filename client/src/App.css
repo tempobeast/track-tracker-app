@@ -290,47 +290,17 @@ input[type=submit]:hover {
   clear: both;
 }
 
-
-@media (max-width: 40rem) {
-  .col-25, .col-75, input[type=submit] {
-    width: 100%;
-    margin-top: 0;
-  }
-  
-  #day_thumb_container {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: space-around;
-    margin: 50px 50px;
-  }
-  
-  .day_thumb {
-    background: linear-gradient(45deg, rgb(171, 171, 171), rgb(143, 141, 141));
-    border-radius: 5px;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-    padding: 10px;
-    width: 100px;
-    height: 100px;
-    margin: 5px;
-    color: white;
-    display: inline-block;
-  }
-  
-  /* .day_thumb-mobile{
-    display: none;
-  } */
-  
-  
+.workout-highlighted{
+  display: none;
 }
 
-#day_thumb_container {
+/* #day_thumb_container {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-around;
   margin: 50px 50px;
-}
+} */
 
 .patch_athlete {
   width: 75%;
@@ -361,25 +331,19 @@ input[type=submit]:hover {
   margin: 20px auto;
 }
 
-.day_thumb-mobile {
-  background: linear-gradient(45deg, rgb(171, 171, 171), rgb(143, 141, 141));
-  border-radius: 5px;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-  padding: 10px;
-  width: 80vw;
-  margin: 5px;
-  color: white;
-  display:inline-block
+.day_thumb{
+  display: none
 }
 
 .day_thumb_date_container{
-  display: none;
+  display:none;
 }
 
-.day_thumb:hover{
+
+/* .day_thumb:hover{
   transform: scale(1.15);
   cursor: pointer;
-}
+} */
 
 /* .day_thumb_date{
   font-size: calc(14px + 1vw);
@@ -390,7 +354,6 @@ input[type=submit]:hover {
   font-size: calc(10px + .5vw);
   margin-top: 5px;
 }
-
 
 #long_run {
   background: linear-gradient(45deg, rgb(236, 147, 83), rgb(240, 107, 12) 35% 100%);
@@ -459,4 +422,58 @@ input[type=submit]:hover {
 .distance_or_duration_form{
   width: 200px;
   margin: 15px
+}
+
+@media (min-width: 40rem) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  #day_thumb_container-with-buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #day_thumb_container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .day_thumb_container-button {
+    width: 5rem;
+    margin: 1rem 0;
+  }
+
+  #day_thumb_container{
+    margin: 0 2rem;
+  }
+
+  .day_thumb {
+    display: block;
+    background: linear-gradient(45deg, rgb(171, 171, 171), rgb(143, 141, 141));
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    padding: 10px;
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    color: white;
+  }
+
+  .day_thumb-mobile {
+    display: none
+  }
+
+  .day_thumb_details{
+    display: none;
+  }
+  
+  .day_thumb_date_container{
+    display: flex
+  }
+  
 }
