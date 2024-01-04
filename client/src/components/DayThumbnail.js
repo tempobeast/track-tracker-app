@@ -9,6 +9,7 @@ function DayThumbnail ({day, onCalendarChange}) {
     const workouts = useSelector((state) => state.workouts.value)
     const fullDate = format(day, "eee LLL dd yyyy")
     const month = fullDate.slice(4, 7)
+    const year = fullDate.slice(-4)
     const dateNumber = fullDate.slice(8, 10)
 
     function handleThumbnailClick(e) {
@@ -22,9 +23,7 @@ function DayThumbnail ({day, onCalendarChange}) {
 
     return (
         <div>
-        <div className="day_thumb" 
-        id={workout ? createId() : "no_workout"} 
-        onClick={handleThumbnailClick}>
+        <div className="day_thumb" id={workout ? createId() : "no_workout"} onClick={handleThumbnailClick}>
             <div className="day_thumb_date_container">
                 <h4 className="day_thumb_date">{dateNumber}</h4>
                 <h4 className="day_thumb_month">{month.toUpperCase()}</h4>
@@ -32,17 +31,17 @@ function DayThumbnail ({day, onCalendarChange}) {
             </div>
             {workout ? <h5 className="day_thumb_detail">{workout.workout_type}</h5> : <h5 className="day_thumb_detail">Add Workout</h5>}
         </div>
-            {workout ? 
             <div className="workout_card day_thumb-mobile" id={workout ? createId() : "no_workout"}>
-            <div className="workout_card_header">
-            <h1 className="workout_date">{dateNumber}</h1>
-            <h4 className="workout_month">{month.toUpperCase()}</h4>
+                <div className="workout_card_header">
+                <h1 className="workout_date">{dateNumber}</h1>
+                <h4 className="workout_month">{month.toUpperCase()}</h4>
+                </div>
+                {workout ?
+                <h2 className="workout_type">{workout.workout_type}</h2>
+                : null}
+                {workout ? detailsToDisplay : <p>no workout scheduled</p>}
+                <h3 className="workout_year">{year}</h3>
             </div>
-            <h2 className="workout_type">{workout.workout_type}</h2>
-            {detailsToDisplay}
-            <h3 className="workout_year">{workout.year}</h3>
-            </div>
-        : null}
         </div>
     )
 }

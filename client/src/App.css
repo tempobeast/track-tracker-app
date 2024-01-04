@@ -339,6 +339,12 @@ input[type=submit]:hover {
   display:none;
 }
 
+.day_thumb-mobile{
+  display: block;
+  background: linear-gradient(45deg, rgb(171, 171, 171), rgb(143, 141, 141));
+
+}
+
 
 /* .day_thumb:hover{
   transform: scale(1.15);
@@ -402,6 +408,10 @@ input[type=submit]:hover {
 #tempo:hover {
   background: linear-gradient(235deg, rgb(252, 201, 15), rgb(227, 197, 61) 35% 100%);
 }
+
+/* #no_workout{
+  background: linear-gradient(45deg, rgb(171, 171, 171), rgb(143, 141, 141));
+} */
 
 .interval_form_entry {
   display: flex;
@@ -474,6 +484,10 @@ input[type=submit]:hover {
   
   .day_thumb_date_container{
     display: flex
+  }
+
+  .workout-highlighted{
+    display: block;
   }
   
 }
