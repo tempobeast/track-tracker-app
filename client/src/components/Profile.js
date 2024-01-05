@@ -65,11 +65,14 @@ return (
           : null
         }
         <DayThumbnailContainer clickedDateValue={clickedDateValue} currentWeek={currentWeek} onCalendarChange={onCalendarChange} workout={findWorkout}/>
-        {
-        findWorkout 
-        ? <WorkoutCard workout={findWorkout} dateToString={dateToString}/>
-        : <CreateNewWorkout dateToString={dateToString} dateToISO={dateToISO}/>
-        }
+        <div className="workout-highlighted_web" >
+          {
+            findWorkout 
+            ? <WorkoutCard workout={findWorkout} dateToString={dateToString}/>
+            : <CreateNewWorkout dateToString={dateToString} dateToISO={dateToISO}/>
+          }
+        </div>
+
         <div>
           <button onClick={handleLogoutClick}>Log out</button>
         </div>

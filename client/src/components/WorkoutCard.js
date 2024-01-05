@@ -18,7 +18,7 @@ function WorkoutCard ({ workout, dateToString }) {
     // const averageWorkoutRating = workout.log_entries.reduce(function(acc, entry) {return acc + entry.workout_rating}, 0)/workout.log_entries.length;
 
     return (
-        <div className="workout_card workout-highlighted" id={workout ? createId() : "no_workout"}>
+        <div className="workout_card" id={workout ? createId() : "no_workout"}>
             <div className="workout_card_header">
                 <h1 className="workout_date">{dateNumber}</h1>
                 <h4 className="workout_month">{month.toUpperCase()}</h4>

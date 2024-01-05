@@ -290,10 +290,6 @@ input[type=submit]:hover {
   clear: both;
 }
 
-.workout-highlighted{
-  display: none;
-}
-
 /* #day_thumb_container {
   display: flex;
   flex-wrap: wrap;
@@ -342,7 +338,11 @@ input[type=submit]:hover {
 .day_thumb-mobile{
   display: block;
   background: linear-gradient(45deg, rgb(171, 171, 171), rgb(143, 141, 141));
+  margin: 1rem auto
+}
 
+.workout-highlighted_web{
+  display: none;
 }
 
 
@@ -485,9 +485,9 @@ input[type=submit]:hover {
   .day_thumb_date_container{
     display: flex
   }
-
-  .workout-highlighted{
+  
+  .workout-highlighted_web{
     display: block;
   }
-  
+
 }
