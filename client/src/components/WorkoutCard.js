@@ -1,8 +1,10 @@
 import React from "react";
 import "../App.css";
+import { useSelector } from "react-redux";
 
 function WorkoutCard ({ workout, dateToString }) {
 
+    const user = useSelector((state) => state.user.value);
     const {workout_type, details, add_ons} = workout
     const createId = () => workout_type.toLowerCase().split(" ").join("_")
     const dateSplit = dateToString.split(" ")
@@ -11,7 +13,14 @@ function WorkoutCard ({ workout, dateToString }) {
     const dateNumber = dateSplit[2]
     const year = dateSplit[3]
 
-    const detailsToDisplay = details.map((detail) => <p key={detail}>{detail}</p>)
+    const detailsToDisplay = details.map((detail) => (
+        <div key={detail} className="workout-card-detail__athlete">
+            {user.type === "Athlete" ? <input type="checkbox"/> : null}
+            <p >{detail}</p>
+        </div>
+        )
+    
+    )
     
     // const displayWorkoutDetails = details.map((detail) => <p>{detail}</p>)
     
