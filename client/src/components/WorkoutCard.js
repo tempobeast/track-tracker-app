@@ -15,7 +15,7 @@ function WorkoutCard ({ workout, dateToString }) {
 
     const detailsToDisplay = details.map((detail) => (
         <div key={detail} className="workout-card-detail__athlete">
-            {user.type === "Athlete" ? <input type="checkbox"/> : null}
+            {user.type === "Athlete" ? <input className="checkbox" type="checkbox"/> : null}
             <p >{detail}</p>
         </div>
         )

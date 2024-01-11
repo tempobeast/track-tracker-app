@@ -56,6 +56,8 @@ function Profile() {
 
     const findWorkout = workouts.find((workout) => workout.date === format(clickedDateValue, 'yyyy-MM-dd'))
 
+      console.log(user)
+
 return (
     <div id="profile">
         <h3>{user.first_name}</h3>
