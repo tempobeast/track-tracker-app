@@ -1,6 +1,7 @@
 import React from "react";
-import "../App.css";
-import AthleteList from "./AthleteList";
+import "./AthleteContainer.css"
+import "../../App.css";
+import AthleteList from "../athlete_list/AthleteList";
 import { useSelector } from 'react-redux'
 
 

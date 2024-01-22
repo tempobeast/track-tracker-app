@@ -51,20 +51,6 @@ input{
   margin: auto;
 }
 
-#athlete_container {
-  margin-top: 100px;
-}
-
-#athlete_list {
-  text-align: left;
-  margin-left: 3%;
-  font-size:x-large;
-  font-weight: 500;
-  float: left;
-  width: 18%;
-  padding-left: 2%;
-}
-
 .athlete_name {
   background-color: rgb(3, 26, 232);
   padding-left: 10px;
