@@ -1,6 +1,6 @@
 import React from "react";
-import "../../App.css";
 import "./AthleteList.css"
+import "../../App.css";
 
 function AthleteList ({athlete}) {
 

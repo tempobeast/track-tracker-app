@@ -1,0 +1,12 @@
+.new_workout_form{
+    background-color: white;
+}
+
+.create_workout{
+    background-color: lightgrey;
+    width: 80%;
+    margin: 2rem auto;
+    border-radius: 1rem;
+    border: .25rem solid lightgrey;
+    padding-bottom: 2rem;
+}
