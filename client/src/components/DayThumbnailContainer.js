@@ -1,6 +1,6 @@
 import React from "react";
 import "../App.css";
-import DayThumbnail from "./DayThumbnail";
+import DayThumbnail from "./day_thumbnail/DayThumbnail";
 
 function DayThumbnailContainer ({ currentWeek, clickedDateValue, onCalendarChange }) {
     

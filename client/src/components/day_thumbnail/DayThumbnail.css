@@ -1,0 +1,20 @@
+.day_thumb_date{
+    font-size: 45px;
+    margin: 0
+  }
+  
+  .day_thumb_month{
+    padding: 0;
+    transform: rotate(90deg);
+    font-size: 18px;
+    margin: 0 0 0 -20px;
+  }
+  
+  .day_thumb_date_container{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    padding: 0;
+  }
+
+  

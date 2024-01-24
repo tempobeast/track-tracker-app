@@ -1,5 +1,6 @@
 import React from "react";
-import "../App.css";
+import "./DayThumbnail.css"
+import "../../App.css";
 import {useSelector} from 'react-redux'
 import {format} from 'date-fns'
 

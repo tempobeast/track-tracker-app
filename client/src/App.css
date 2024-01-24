@@ -153,7 +153,7 @@ input{
   margin: 10px 0 0 0;
 }
 
-.day_thumb_date{
+/* .day_thumb_date{
   font-size: 45px;
   margin: 0
 }
@@ -170,7 +170,7 @@ input{
   flex-wrap: nowrap;
   flex-direction: row;
   padding: 0;
-}
+} */
 
 .workout_year{
   display: flex;
@@ -329,7 +329,7 @@ input[type=submit]:hover {
   margin: 20px auto;
 }
 
-.day_thumb{
+/* .day_thumb{
   display: none
 }
 
@@ -341,7 +341,7 @@ input[type=submit]:hover {
   display: block;
   background: linear-gradient(45deg, rgb(171, 171, 171), rgb(143, 141, 141));
   margin: 1rem auto
-}
+} */
 
 .workout-highlighted_web{
   display: none;
