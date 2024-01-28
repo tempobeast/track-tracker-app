@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./AthleteProfile.css"
+import "./AthleteProfile.css";
 import "../../App.css";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -7,7 +7,7 @@ import { setUser } from "../../features/user/userSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CreateNewWorkout from "../create_workout/CreateWorkout";
-import DayThumbnailContainer from "../DayThumbnailContainer";
+import DayThumbnailContainer from "../day_thumbnail_contailer/DayThumbnailContainer";
 import WorkoutCard from "../WorkoutCard";
 import { format } from "date-fns";
 import { setWorkouts } from "../../features/workouts/workoutsSlice";

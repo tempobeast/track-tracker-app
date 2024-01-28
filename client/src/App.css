@@ -454,13 +454,13 @@ input[type=submit]:hover {
     margin-top: 0;
   }
 
-  #day_thumb_container-with-buttons{
+  /* #day_thumb_container-with-buttons{
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
+  } */
   
-  #day_thumb_container {
+  /* #day_thumb_container {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -470,7 +470,7 @@ input[type=submit]:hover {
   .day_thumb_container-button {
     width: 5rem;
     margin: 1rem 0;
-  }
+  } */
 
   #day_thumb_container{
     margin: 0 2rem;
