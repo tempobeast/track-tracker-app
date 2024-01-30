@@ -331,9 +331,9 @@ input[type=submit]:hover {
 
 /* .day_thumb{
   display: none
-}
+} */
 
-.day_thumb_date_container{
+/* .day_thumb_date_container{
   display:none;
 }
 
@@ -341,7 +341,7 @@ input[type=submit]:hover {
   display: block;
   background: linear-gradient(45deg, rgb(171, 171, 171), rgb(143, 141, 141));
   margin: 1rem auto
-} */
+}  */
 
 .workout-highlighted_web{
   display: none;
@@ -358,10 +358,10 @@ input[type=submit]:hover {
   margin: 2px;
 } */
 
-.day_thumb_detail{
+/* .day_thumb_detail{
   font-size: calc(10px + .5vw);
   margin-top: 5px;
-}
+} */
 
 #long_run {
   background: linear-gradient(45deg, rgb(236, 147, 83), rgb(240, 107, 12) 35% 100%);
@@ -472,11 +472,11 @@ input[type=submit]:hover {
     margin: 1rem 0;
   } */
 
-  #day_thumb_container{
+  /* #day_thumb_container{
     margin: 0 2rem;
-  }
+  } */
 
-  .day_thumb {
+  /* .day_thumb {
     display: block;
     background: linear-gradient(45deg, rgb(171, 171, 171), rgb(143, 141, 141));
     border-radius: 5px;
@@ -498,7 +498,7 @@ input[type=submit]:hover {
   
   .day_thumb_date_container{
     display: flex
-  }
+  } */
   
   .workout-highlighted_web{
     display: block;
