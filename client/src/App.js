@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Header from "./components/Header";
-import Nav from "./components/Nav";
+import Nav from "./components/nav/Nav";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
 import AthleteProfile from "./components/athlete_profile/AthleteProfile";
