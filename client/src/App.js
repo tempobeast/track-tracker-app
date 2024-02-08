@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import { Route, Routes, Navigate } from "react-router-dom";
-import Header from "./components/Header";
+import Header from "./components/header/Header";
 import Nav from "./components/nav/Nav";
 import Home from "./components/Home";
-import Profile from "./components/Profile";
+import Profile from "./components/profile/Profile";
 import AthleteProfile from "./components/athlete_profile/AthleteProfile";
 import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "./features/user/userSlice";

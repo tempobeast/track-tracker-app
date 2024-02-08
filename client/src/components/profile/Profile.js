@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
-import "../App.css";
+import './Profile.css'
+import "../../App.css";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import { setUser } from "../features/user/userSlice";
+import { setUser } from "../../features/user/userSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import CreateNewWorkout from "./create_workout/CreateWorkout";
-import DayThumbnailContainer from "./day_thumbnail_contailer/DayThumbnailContainer";
-import WorkoutCard from "./WorkoutCard";
+import CreateNewWorkout from "../create_workout/CreateWorkout";
+import DayThumbnailContainer from "../day_thumbnail_contailer/DayThumbnailContainer";
+import WorkoutCard from "../WorkoutCard";
 import { format } from "date-fns";
 
 function Profile() {

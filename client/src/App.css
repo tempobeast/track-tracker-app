@@ -305,7 +305,7 @@ input[type=submit]:hover {
   
 }
 
-#nav {
+/* #nav {
   overflow: hidden;
   background-color: rgb(3, 26, 232);
 }
@@ -323,7 +323,7 @@ input[type=submit]:hover {
 .nav_button:hover{
   background-color: #ccc;
   color: rgb(3, 26, 232)
-}
+} */
 
 .react-calendar {
   margin: 20px auto;
@@ -343,9 +343,9 @@ input[type=submit]:hover {
   margin: 1rem auto
 }  */
 
-.workout-highlighted_web{
+/* .workout-highlighted_web{
   display: none;
-}
+} */
 
 
 /* .day_thumb:hover{
