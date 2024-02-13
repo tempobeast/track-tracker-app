@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "./CreateWorkout.css"
+import "./CreateWorkout.css";
 import "../../App.css";
-import IntervalItemForm from "../IntervalItemForm";
-import RunDistanceOrDurationForm from "../RunDistanceOrDurationForm";
+import IntervalItemForm from "../interval_item_form/IntervalItemForm";
+import RunDistanceOrDurationForm from "../run_distance_or_duration_form/RunDistanceOrDurationForm";
 import { setWorkouts } from "../../features/workouts/workoutsSlice";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -36,7 +36,7 @@ function CreateNewWorkout({ dateToString }) {
   }
 
   return (
-    <div className="create_workout">
+    <div className='create_workout'>
       <h2>{dateToString}</h2>
       <form className='new_workout_form'>
         <label htmlFor='workout_type'>

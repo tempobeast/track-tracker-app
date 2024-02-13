@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CreateNewWorkout from "../create_workout/CreateWorkout";
 import DayThumbnailContainer from "../day_thumbnail_contailer/DayThumbnailContainer";
-import WorkoutCard from "../WorkoutCard";
+import WorkoutCard from "../workout_card/WorkoutCard";
 import { format } from "date-fns";
 import { setWorkouts } from "../../features/workouts/workoutsSlice";
 

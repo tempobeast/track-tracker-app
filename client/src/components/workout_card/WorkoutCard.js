@@ -1,5 +1,6 @@
 import React from "react";
-import "../App.css";
+import "./WorkoutCard.css"
+import "../../App.css";
 import { useSelector } from "react-redux";
 
 function WorkoutCard ({ workout, dateToString }) {

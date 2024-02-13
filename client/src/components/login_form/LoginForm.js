@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { useDispatch } from 'react-redux'
-import {setUser} from '../features/user/userSlice'
-import { useNavigate } from 'react-router-dom'
-
+import { useDispatch } from "react-redux";
+import { setUser } from "../../features/user/userSlice";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
@@ -26,7 +24,7 @@ function LoginForm() {
       if (res.ok) {
         res.json().then((user) => {
           dispatch(setUser(user));
-          navigate("/user_profile")
+          navigate("/user_profile");
         });
       } else {
         res.json().then((data) => setErrors(data.errors));
@@ -43,34 +41,34 @@ function LoginForm() {
   }
 
   return (
-    <div >
-      <h1 className="login-form">Login:</h1>
+    <div>
+      <h1 className='login-form'>Login:</h1>
       <form onSubmit={handleSubmit}>
-        <label className="label" htmlFor="username">
+        <label className='label' htmlFor='username'>
           Username:{" "}
         </label>
         <input
-          type="text"
-          id="username"
-          autoComplete="off"
+          type='text'
+          id='username'
+          autoComplete='off'
           value={username}
           onChange={handleUsernameChange}
           required
         />
         <br />
-        <label className="label" htmlFor="password">
+        <label className='label' htmlFor='password'>
           Password:{" "}
         </label>
         <input
-          type="password"
-          id="password"
-          autoComplete="off"
+          type='password'
+          id='password'
+          autoComplete='off'
           value={password}
           onChange={handlePasswordChange}
           required
         />
         <br />
-        <button type="submit"> {isLoading ? "Loading..." : "Login"} </button>
+        <button type='submit'> {isLoading ? "Loading..." : "Login"} </button>
         {errors ? errors.map((err) => <p key={err}>{err}</p>) : null}
       </form>
     </div>
