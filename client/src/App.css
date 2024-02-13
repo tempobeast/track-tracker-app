@@ -120,12 +120,11 @@ input{
   
 }
 
-.workout_card {
+/* .workout_card {
   color: white;
   border-radius: 10px;
   width: 70%;
   margin: 0 auto 50px;
-  /* padding: 0 0 75px 0; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 }
 
@@ -137,21 +136,18 @@ input{
   margin: 0 0 20px 10px;
   border-bottom: solid 2px;
   padding: 0;
-  /* width: 30%; */
 }
 
 .workout_date {
- /* float: left; */
  font-size: 5rem;
  margin: 10px -40px 5px 0
 }
 
 .workout_month {
   transform: rotate(90deg);
-  /* float: left; */
   font-size: 2rem;
   margin: 10px 0 0 0;
-}
+} */
 
 /* .day_thumb_date{
   font-size: 45px;
@@ -172,7 +168,7 @@ input{
   padding: 0;
 } */
 
-.workout_year{
+/* .workout_year{
   display: flex;
   justify-content: flex-end;
   margin: 70px 10px 10px 0;
@@ -181,9 +177,8 @@ input{
 
 
 .workout_type {
-  /* margin-top: -50px; */
   color: white
-}
+} */
 
 /* .workout_approx_duration {
   margin-top: -40px;
