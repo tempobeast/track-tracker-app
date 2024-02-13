@@ -1,4 +1,13 @@
 .workout-highlighted_web{
     display: none;
+    max-width: 60rem;
+    margin: auto;
   }
+
+
+@media(min-width: 40rem){
+  .workout-highlighted_web{
+      display: block;
+    }
+}
   
